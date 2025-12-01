@@ -18,10 +18,9 @@ A production-ready, clean, scalable React Native starter using the exact stack t
 ## Folder Structure
 ```
 my-app/
-
 ├── src/
 │   ├── app/                  # Expo Router pages \& navigation
-│   │   ├── \_layout.tsx       # Root layout
+│   │   ├── \_layout.tsx      # Root layout
 │   │   ├── (tabs)/           # Bottom tabs (optional)
 │   │   ├── auth/
 │   │   └── index.tsx         # Splash / entry screen
@@ -50,7 +49,6 @@ my-app/
 │   ├── entities/             # Shared domain models (User, Product…)
 │   └── assets/               # Images, icons, fonts
 │
-
 ├── App.tsx                   # Main entry point
 ├── app.json
 ├── babel.config.js
