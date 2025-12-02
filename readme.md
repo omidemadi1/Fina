@@ -1,5 +1,4 @@
 # Professional React Native Template — 2025 Standard
-
 A production-ready, clean, scalable React Native starter using the exact stack that top companies and teams use in 2025.
 
 ## Tech Stack (2025 Gold Standard)
@@ -82,13 +81,12 @@ yarn android
 
 ## Scripts
 ```bash
-yarn dev            # Start dev server
-yarn dev:clear      # Clear cache
-yarn lint           # Run ESLint
-yarn type-check     # TypeScript check
-eas build --platform android/ios   # Cloud build
-eas update          # OTA update (no store release needed)
-
+yarn dev                            # Start dev server
+yarn dev:clear                      # Clear cache
+yarn lint                           # Run ESLint
+yarn type-check                     # TypeScript check
+eas build --platform android/ios    # Cloud build
+eas update                          # OTA update (no store release needed)
 ```
 
 ## Adding a New Feature (e.g., shop)
@@ -109,36 +107,40 @@ APP\_ENV=development
 
 Copy → create `.env` and fill real values.
 
-
-## Docker & Dev Container (VS Code)
-
-You can use a Docker-based development container (Dev Container) for a reproducible dev environment.
-
-Files added:
-
-- `.devcontainer/Dockerfile` — base image with Node, yarn and `expo-cli` installed.
-- `.devcontainer/devcontainer.json` — VS Code devcontainer config.
-- `docker-compose.dev.yml` — helper to run the container via Docker Compose.
-
-Quick start (VS Code):
-
-1. Install the Remote - Containers extension in VS Code.
-2. Open the `Fina` folder in VS Code.
-3. Press F1 -> `Dev Containers: Reopen in Container`.
-
-Quick start (Docker Compose):
+## Quick start (Docker Compose)
+Use the provided `docker-compose.yml` to build and run the development container (service name: `fina-dev`). Run these commands from PowerShell in the repository root:
 
 ```powershell
 cd 'c:\Users\eomid\Desktop\Fina'
-docker compose -f docker-compose.dev.yml build
-docker compose -f docker-compose.dev.yml up -d
-docker compose -f docker-compose.dev.yml exec fina-dev bash
-# inside container run:
+
+# Build the image (or re-build after Dockerfile changes)
+docker compose build
+
+# Start the container in the background
+docker compose up -d
+
+# View live logs
+docker compose logs -f fina
+
+# Open a shell inside the running container
+docker compose exec fina bash
+
+# Inside the container
 yarn install
 yarn dev
 ```
 
+Shortcuts and cleanup:
+
+```powershell
+# Rebuild the image without cache
+docker compose build --no-cache
+
+# Stop and remove containers
+docker compose down
+```
+
 Notes:
-- The devcontainer installs `expo-cli` and Node. Android emulators are not included inside the container — use a local emulator or a physical device and use Expo tunneling if needed.
-- Forwarded ports: `19000`, `19001`, `19002` (Metro, devtools). Adjust as needed.
+- The container includes the new `expo` CLI and Node, but does NOT include Android emulators or an ADB server. Use a host emulator or a physical device and Expo tunneling if needed.
+- Forwarded ports used by the compose service: `19000`, `19001`, `19002` (Metro, devtools). Adjust as needed in `docker-compose.yml`.
 
